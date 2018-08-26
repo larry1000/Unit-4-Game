@@ -1,0 +1,70 @@
+body {
+  background: url('../images/background.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+    color: white;
+}
+.title {
+    width: 20%;
+    height: 50%;
+    margin-left: 35%;
+    background-color: red;
+    text-align: center;
+}
+.Instructions {
+    width: 40%;
+    height: 40%;
+    background-color: beige;
+    color: red;
+}
+.goal {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    text-align: center;
+    background-color: lightgreen;
+    color: darkblue;
+    padding-top: 5px;
+
+}
+.tally {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-left: 20%;
+    background-color: aqua;
+    margin-top: -10%;
+    padding-left: 10px;
+    text-align: left;
+}
+img {
+    position: relative;
+    margin-top: 1%;
+    width: 100px;
+    height: 100px;
+    padding: 3px;
+
+}
+.message {
+    width: 200px;
+    height: 8%;
+    background-color: darkgrey;
+    text-align: left;
+}
+.score {
+    width: 200px;
+    height: 120px;
+    background-color: darkgrey;
+    text-align: left;
+    margin-top: 3%;
+
+}
+#youwin, #youlost {
+    
+    display: none;
+}
