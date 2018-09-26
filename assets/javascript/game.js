@@ -1,106 +1,111 @@
+
+// DATA
 var numberOptions = [1,2,3,4,5,6,7,8,9,10,11,12];
 var counter = 0;
 var wins = 0;
 var lost = 0;
-var goal =0;
+var goal = 0;
+var blueNumber=0;
+var greenNumber = 0;
+var redNumber = 0;
+var yellowNumber = 0;
+
+
+
+
+
+// FUNCTIONS
 
 function goalNumber() {
       goal = Math.floor((Math.random() * 100) + 1);
-    var num = parseInt($(".goal").text());
+      console.log("CURRENT GOAL: ", goal)
+   
     $(".goal").text(goal);
 }
 
 
-var blueNumber =
-  numberOptions[Math.floor(Math.random() * numberOptions.length)];
-var greenNumber =
-    numberOptions[Math.floor(Math.random() * numberOptions.length)];
-var redNumber =
-    numberOptions[Math.floor(Math.random() * numberOptions.length)];
-var yellowNumber =
-    numberOptions[Math.floor(Math.random() * numberOptions.length)];
 
-for (var i = 0; i < numberOptions.length; i++) {
-    var imageCrystal = $("<img>");
-imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+
+
+function startGame(){
+    goalNumber();
+    counter=0;
+    $(".score").text(counter);
+
+
+     blueNumber =
+        numberOptions[Math.floor(Math.random() * numberOptions.length)];
+    greenNumber =
+        numberOptions[Math.floor(Math.random() * numberOptions.length)];
+     redNumber =
+        numberOptions[Math.floor(Math.random() * numberOptions.length)];
+     yellowNumber =
+        numberOptions[Math.floor(Math.random() * numberOptions.length)];
+
+    console.log("RANDOM BLUE: ", blueNumber);
+    console.log("RANDOM RED: ", redNumber);
+    console.log("RANDOM GREEN: ", greenNumber);
+    console.log("RANDOM YELLOW: ", yellowNumber);
+
+
 }
 
-$("#blue-crystal").on("click", function () {
+function checkWin(){
+   if (counter === goal){
+       wins ++
+       $('#wins').text(wins);
+       $('#youwin').show();
+       $("#youlost").hide();
+       startGame()
+   }else if(counter > goal){
+       lost++
+       $('#lost').text(lost);
+       $('#youlost').show();
+       $("#youwin").hide();
+       startGame();
+   }
+   console.log("WINS & LOSSES: ", wins, lost)
 
 
-    var num = parseInt($('.score').text());
-    $('.score').text(blueNumber);
+}
+
+function score(){
+
+}
+
+
+
+
+
+
+
+// GAME LOGIC
+startGame();
+
+
+$('.crystal').on('click', function(e){
+    
+    var thisId = e.target.id;
+    if(thisId ==="blue-crystal"){
+        counter += blueNumber;
+    }else if(thisId ==="red-crystal"){
+        counter += redNumber;
+    }else if (thisId === "green-crystal") {
+        counter += greenNumber;
+    }else if (thisId === "yellow-crystal") {
+        counter += yellowNumber;
+    }else{
+        console.log("Wrong")
+    }
+    $('.score').text(counter);
+
+    checkWin();
+
+
+})
+
+   
 
 
     
-    console.log(blueNumber);
-  
-});
-$("#green-crystal").on("click", function () {
-
-    var num = parseInt($('.score').text());
-    $('.score').text(greenNumber);
-
-    console.log(greenNumber);
-
-});
-$("#red-crystal").on("click", function () {
-
-    var num = parseInt($('.score').text());
-    $('.score').text(redNumber);
-
-
-    console.log(redNumber);
-
-});
-$("#yellow-crystal").on("click", function () {
-
-    var num = parseInt($('.score').text());
-    $('.score').text(yellowNumber);
-
-    console.log(yellowNumber);
-
-});
-$(".crystal").on("click", function () {
-
-    // Determining the crystal's value requires us to extract the value from the data attribute.
-    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
-    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-
-    var crystalValue = ($(this).attr(".score"));
-    crystalValue = parseInt(crystalValue);
-    // We then add the crystalValue to the user's "counter" which is a global variable.
-    // Every click, from every crystal adds to the global counter.
-    counter += crystalValue;
-
-    // All of the same game win-lose logic applies. So the rest remains unchanged.
-    // alert("New score: " + counter);
-
-    // if (counter === targetNumber) {
-    //     alert("You win!");
-    // }
-
-    // else if (counter >= targetNumber) {
-    //     alert("You lose!!");
-    // }
-
-});
-
-
-// $(".crystal").on("click", function() {
-
-//     goal = redNumber + blueNumber;
-//   var num = parseInt($(".score").text());
-//   $(".score").text(goal);
-
-//   console.log(goal);
-// });
-
-// function adding () {
-//     counter = blueNumber + greenNumber;
-//     $('.score').text("Total: " + counter);
-// };
-
-// $('.score').text(counter);
 
